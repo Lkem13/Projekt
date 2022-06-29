@@ -9,13 +9,39 @@ namespace Projekt
 {
     public class DataContext: DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source = application.db");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=application;Trusted_Connection=True;");
         }
 
-        public DbSet<Logowanie> Logowanie { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Adres> Adres { get; set; }
+        public DbSet<Pracownicy> Pracownik { get; set; }
+
+
+        public DbSet<Logowanie> Logon { get; set; }
+        public DbSet<Adresy> Adres { get; set; }
+        public DbSet<Stanowiska> Stanowisko { get; set; }
+        public DbSet<Placowki> Placowka { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Adresy>()
+                .HasOne(b => b.Pracownicy)
+                .WithOne(i => i.Adres)
+                .HasForeignKey<Pracownicy>(b => b.AdresyId);
+
+            modelBuilder.Entity<Stanowiska>()
+                .HasOne(b => b.Pracownicy)
+                .WithOne(i => i.Stanowisko)
+                .HasForeignKey<Pracownicy>(b => b.StanowiskaId);
+
+            modelBuilder.Entity<Placowki>()
+                .HasOne(b => b.Pracownicy)
+                .WithOne(i => i.Placowka)
+                .HasForeignKey<Pracownicy>(b => b.PlacowkiId);
+
+            modelBuilder.Entity<Logowanie>()
+                .HasIndex(u => u.Login)
+                .IsUnique();
+        }
     }
 }

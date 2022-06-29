@@ -20,5 +20,14 @@ namespace Projekt
             facade.EnsureCreated();
         }
 
+        public void appExit(object sender, ExitEventArgs e)
+        {
+            /* using (DataContext context = new DataContext())
+             {
+                 context.Database.EnsureDeleted();
+             }
+            */
+        }
+
     }
 }
