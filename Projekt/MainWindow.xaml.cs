@@ -29,18 +29,6 @@ namespace Projekt
         public MainWindow()
         {
             InitializeComponent();
-            
-            /*using (DataContext context = new DataContext())
-            {
-                Logowanie admin = new Logowanie()
-                {
-                    Login = "admin",
-                    Password = "admin",
-                    Role = "Admin"
-                };
-                context.Add(admin);
-                context.SaveChanges();3
-            }*/
         }
 
         public void Create()

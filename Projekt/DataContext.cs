@@ -15,8 +15,6 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         }
 
         public DbSet<Pracownicy> Pracownik { get; set; }
-
-
         public DbSet<Logowanie> Logon { get; set; }
         public DbSet<Adresy> Adres { get; set; }
         public DbSet<Stanowiska> Stanowisko { get; set; }
