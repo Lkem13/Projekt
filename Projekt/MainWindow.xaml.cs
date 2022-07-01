@@ -81,13 +81,28 @@ namespace Projekt
 
                 var imie = ImieTextBox.Text;
                 var nazwisko = NazwiskoTextBox.Text;
+                var miasto = MiastoTextBox.Text;
+                var ulica = UlicaTextBox.Text;
+                var mieszkanie = MieszkanieTextBox.Text;
+                var stanowisko = StanowiskoTextBox.Text;
+                var placowka = PlacowkaTextBox.Text;
 
                 if (imie != null && nazwisko != null)
                 {
 
                     Pracownicy user = context.Pracownik.Find(selectedUser.Id);
+                    Adresy adres = context.Adres.Find(selectedUser.Id);
+                    Placowki placowk = context.Placowka.Find(selectedUser.Id);
+                    Stanowiska stanowisk = context.Stanowisko.Find(selectedUser.Id);
+
                     user.Imie = imie;
                     user.Nazwisko = nazwisko;
+                    adres.Miasto = miasto;
+                    adres.Mieszkanie = mieszkanie;
+                    adres.Ulica = ulica;
+                    placowk.Placowka = placowka;
+                    stanowisk.Stanowisko = stanowisko;
+                    
 
                     context.SaveChanges();
                 }
@@ -110,8 +125,15 @@ namespace Projekt
                 if (selectedUser != null)
                 {
                     Pracownicy user = context.Pracownik.Single(x => x.Id == selectedUser.Id);
+                    Adresy adres = context.Adres.Single(x => x.AdresyId == selectedUser.Id);
+                    Placowki placowka = context.Placowka.Single(x => x.PlacowkiId == selectedUser.Id);
+                    Stanowiska stanowisko = context.Stanowisko.Single(x => x.StanowiskaId == selectedUser.Id);
+
 
                     context.Remove(user);
+                    context.Remove(adres);
+                    context.Remove(placowka);
+                    context.Remove(stanowisko);
                     context.SaveChanges();
 
                 }
