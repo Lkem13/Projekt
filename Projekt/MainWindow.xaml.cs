@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Projekt
 {
     /// <summary>
@@ -42,30 +43,26 @@ namespace Projekt
                 var mieszkanie = MieszkanieTextBox.Text;
                 var stanowisko = StanowiskoTextBox.Text;
                 var placowka = PlacowkaTextBox.Text;
-
-                if(imie != "" &&
-                    nazwisko != "")
+                
+                if(ImieTextBox.Text != "" &&
+                    NazwiskoTextBox.Text != "")
                 {
-                    Adresy adres = new Adresy() { Ulica = ulica, Mieszkanie = mieszkanie, Miasto = miasto};
-                    context.SaveChanges();
+                    Adresy adres = new Adresy() { Ulica = ulica, Mieszkanie = mieszkanie, Miasto = miasto };
                     Stanowiska stanowisk = new Stanowiska() { Stanowisko = stanowisko };
-                    context.SaveChanges();
                     Placowki placowk = new Placowki() { Placowka = placowka };
+                    context.Pracownik.Add(new Pracownicy() { Imie = imie, Nazwisko = nazwisko, Adres = adres, Stanowisko = stanowisk, Placowka = placowk });
                     context.SaveChanges();
-                    context.Pracownik.Add(new Pracownicy() { Imie = imie, Nazwisko = nazwisko, Adres = adres, Stanowisko = stanowisk, Placowka = placowk});
-                    context.SaveChanges();
+                    
                 }
             }
         }
-
+         
         public void Read()
         {
             using (DataContext context = new DataContext())
             {
-
                 DBPracownicy = context.Pracownik.Include(s => s.Stanowisko).Include(x => x.Placowka).Include(c => c.Adres).ToList();
                 ItemList.ItemsSource = DBPracownicy;
-
             }
 
         }
@@ -78,6 +75,7 @@ namespace Projekt
             {
 
                 Pracownicy selectedUser = ItemList.SelectedItem as Pracownicy;
+                Pracownicy selectedStanowisko = ItemList.SelectedItem as Pracownicy;
 
                 var imie = ImieTextBox.Text;
                 var nazwisko = NazwiskoTextBox.Text;
@@ -89,11 +87,12 @@ namespace Projekt
 
                 if (imie != null && nazwisko != null)
                 {
+                    
 
                     Pracownicy user = context.Pracownik.Find(selectedUser.Id);
                     Adresy adres = context.Adres.Find(selectedUser.Id);
                     Placowki placowk = context.Placowka.Find(selectedUser.Id);
-                    Stanowiska stanowisk = context.Stanowisko.Find(selectedUser.Id);
+                    Stanowiska stanowisk = context.Stanowisko.Find(selectedStanowisko.Id);
 
                     user.Imie = imie;
                     user.Nazwisko = nazwisko;
@@ -105,6 +104,7 @@ namespace Projekt
                     
 
                     context.SaveChanges();
+                    
                 }
 
             }
@@ -135,6 +135,7 @@ namespace Projekt
                     context.Remove(placowka);
                     context.Remove(stanowisko);
                     context.SaveChanges();
+                    
 
                 }
             }
@@ -143,6 +144,7 @@ namespace Projekt
         private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
             Create();
+            Read();
         }
 
         private void ReadButton_Click(object sender, RoutedEventArgs e)
@@ -153,11 +155,13 @@ namespace Projekt
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
             Update();
+            Read();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             Delete();
+            Read();
         }
     }
 }

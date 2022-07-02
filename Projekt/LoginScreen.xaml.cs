@@ -58,7 +58,7 @@ namespace Projekt
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
                 sqlCmd.CommandType = CommandType.Text;
                 sqlCmd.Parameters.AddWithValue("@Login", txtUsername.Text);
-                sqlCmd.Parameters.AddWithValue("@Password", txtPassword.Text);
+                sqlCmd.Parameters.AddWithValue("@Password", txtPassword.Password);
                 int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
                 if(count == 1)
                 {
