@@ -61,8 +61,8 @@ namespace Projekt
                 int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
                 if(count == 1)
                 {
-                    MainWindow dashboard = new MainWindow();
-                    dashboard.Show();
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
                     this.Close();
                 }
                 else

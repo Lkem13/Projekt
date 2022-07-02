@@ -23,9 +23,6 @@ namespace Projekt
     public partial class MainWindow : Window
     {
         public List<Pracownicy> DBPracownicy { get; private set; }
-        public List<Adresy> DBAdresy { get; private set; }
-        public List<Stanowiska> DBStanowiska { get; private set; }
-        public List<Placowki> DBPlacowki { get; private set; }
 
         public MainWindow()
         {
@@ -51,7 +48,6 @@ namespace Projekt
                     Placowki placowk = new Placowki() { Placowka = placowka };
                     context.Pracownik.Add(new Pracownicy() { Imie = imie, Nazwisko = nazwisko, Adres = adres, Stanowisko = stanowisk, Placowka = placowk });
                     context.SaveChanges();
-                    
                 }
             }
         }
@@ -84,7 +80,7 @@ namespace Projekt
                 var stanowisko = StanowiskoTextBox.Text;
                 var placowka = PlacowkaTextBox.Text;
 
-                if (imie != null && nazwisko != null && miasto != null && ulica != null && mieszkanie != null && stanowisko != null && placowka != null)
+                if (imie != "" && nazwisko != "" && miasto != "" && ulica != "" && mieszkanie != "" && stanowisko != "" && placowka != "")
                 {
                     
 
@@ -145,6 +141,13 @@ namespace Projekt
             this.Close();
         }
 
+        public void Return()
+        {
+            LoginScreen loginScreen = new LoginScreen();
+            loginScreen.Show();
+            this.Close();
+        }
+
         private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
             Create();
@@ -171,6 +174,11 @@ namespace Projekt
         private void UsersButton_Click(object sender, RoutedEventArgs e)
         {
             Users();
+        }
+
+        private void ReturnButton_Click(object sender, RoutedEventArgs e)
+        {
+            Return();
         }
     }
 }

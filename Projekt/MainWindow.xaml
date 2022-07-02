@@ -71,9 +71,15 @@
             </StackPanel>
         </Button>
 
-        <Button x:Name="UsersButton" HorizontalAlignment="Left" Margin="700,380,0,0" Click="UsersButton_Click" VerticalAlignment="Top" Width="50">
+        <Button x:Name="UsersButton" HorizontalAlignment="Left" Margin="700,330,0,0" Click="UsersButton_Click" VerticalAlignment="Top" Width="50">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Users"/>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="ReturnButton" HorizontalAlignment="Left" Margin="700,370,0,0" Click="ReturnButton_Click" VerticalAlignment="Top" Width="50">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Return"/>
             </StackPanel>
         </Button>
     </Grid>
