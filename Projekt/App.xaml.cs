@@ -22,10 +22,10 @@ namespace Projekt
 
         public void appExit(object sender, ExitEventArgs e)
         {
-             using (DataContext context = new DataContext())
+             /*using (DataContext context = new DataContext())
              {
                  context.Database.EnsureDeleted();
-             }
+             }*/
             
         }
 

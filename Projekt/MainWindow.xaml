@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Pracownicy" Height="450" Width="800">
     <Grid  >
 
         <ListView Name="ItemList" Margin="5,20,5,0" Height="195" VerticalAlignment="Top">
@@ -23,7 +23,7 @@
         <CheckBox x:Name="EnableCheckBox" Content="Edit"  HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top"/>
 
         <Grid x:Name="EditGrid" IsEnabled="{Binding ElementName=EnableCheckBox,Path=IsChecked}" Margin="3,260,0,0"  HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <Label Content="Imie" HorizontalAlignment="Left" Margin="15,0,0,0"   VerticalAlignment="Top"/>
+            <Label Content="Imie" HorizontalAlignment="Left" Margin="15,0,0,0"  VerticalAlignment="Top"/>
             <Label Content="Nazwisko" HorizontalAlignment="Left" Margin="3,40,0,0" VerticalAlignment="Top"/>
             <Label Content="Miasto" HorizontalAlignment="Left" Margin="180,0,0,0" VerticalAlignment="Top"/>
             <Label Content="Ulica" HorizontalAlignment="Left" Margin="180,40,0,0" VerticalAlignment="Top"/>
@@ -40,8 +40,9 @@
                 <ComboBoxItem Content="Kelner" Tag="1"/>
             </ComboBox>
             <ComboBox Name="PlacowkaTextBox" Text="{Binding ElementName=ItemList ,Path=SelectedItem.Placowka.Placowka,Mode=OneWay}" HorizontalAlignment="Left" Margin="630,20,0,0" Width="100" Height="26" VerticalAlignment="Top" SelectedValuePath="Content">
-                <ComboBoxItem Content="Warszawska" Tag="2"/>
-                <ComboBoxItem Content="Krakowska" Tag="3"/>
+                <ComboBoxItem Content="Warszawska 6" Tag="2"/>
+                <ComboBoxItem Content="Klimeckiego 12" Tag="3"/>
+                <ComboBoxItem Content="Czarna 10" Tag="4"/>
             </ComboBox>
 
         </Grid>
@@ -70,5 +71,10 @@
             </StackPanel>
         </Button>
 
+        <Button x:Name="UsersButton" HorizontalAlignment="Left" Margin="700,380,0,0" Click="UsersButton_Click" VerticalAlignment="Top" Width="50">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Users"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </Window>

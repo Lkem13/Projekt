@@ -43,9 +43,8 @@ namespace Projekt
                 var mieszkanie = MieszkanieTextBox.Text;
                 var stanowisko = StanowiskoTextBox.Text;
                 var placowka = PlacowkaTextBox.Text;
-                
-                if(ImieTextBox.Text != "" &&
-                    NazwiskoTextBox.Text != "")
+
+                if (imie != "" && nazwisko != "" && miasto != "" && ulica != "" && mieszkanie != "" && stanowisko != "" && placowka != "")
                 {
                     Adresy adres = new Adresy() { Ulica = ulica, Mieszkanie = mieszkanie, Miasto = miasto };
                     Stanowiska stanowisk = new Stanowiska() { Stanowisko = stanowisko };
@@ -85,7 +84,7 @@ namespace Projekt
                 var stanowisko = StanowiskoTextBox.Text;
                 var placowka = PlacowkaTextBox.Text;
 
-                if (imie != null && nazwisko != null)
+                if (imie != null && nazwisko != null && miasto != null && ulica != null && mieszkanie != null && stanowisko != null && placowka != null)
                 {
                     
 
@@ -101,8 +100,6 @@ namespace Projekt
                     adres.Ulica = ulica;
                     placowk.Placowka = placowka;
                     stanowisk.Stanowisko = stanowisko;
-                    
-
                     context.SaveChanges();
                     
                 }
@@ -141,6 +138,13 @@ namespace Projekt
             }
         }
 
+        public void Users()
+        {
+            Users users = new Users();
+            users.Show();
+            this.Close();
+        }
+
         private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
             Create();
@@ -162,6 +166,11 @@ namespace Projekt
         {
             Delete();
             Read();
+        }
+
+        private void UsersButton_Click(object sender, RoutedEventArgs e)
+        {
+            Users();
         }
     }
 }

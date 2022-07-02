@@ -31,8 +31,7 @@ namespace Projekt
                     Logowanie admin = new Logowanie()
                     {
                         Login = "admin",
-                        Password = "admin",
-                        Role = "Admin"
+                        Password = "admin"
                     };
                     context.Add(admin);
                     context.SaveChanges();
